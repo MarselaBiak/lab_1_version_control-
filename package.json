@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@testomatio/reporter": "^2.3.6",
+    "jest": "^30.2.0"
+  }
+}
