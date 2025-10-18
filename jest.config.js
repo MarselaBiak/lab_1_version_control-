@@ -1,11 +1,9 @@
-/** @type {import('jest').Config} */
-const config = {
+module.exports = {
   verbose: true,
+  setupFiles: ['<rootDir>/jest.setup.js'],
+  testEnvironment: 'node',
   reporters: [
     'default',
-    ['./node_modules/@testomatio/reporter/lib/adapter/jest.js', { apiKey: process.env.TESTOMATIO }]
-  ]
+    ['./node_modules/@testomatio/reporter/lib/adapter/jest.js', { apikey: process.env.TESTOMATIO }]
+  ],
 };
-
-module.exports = config;
-
