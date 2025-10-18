@@ -1,4 +1,4 @@
-// Глобальный мок axios — выполняется до тестов и предотвращает ошибку "Cannot find module 'axios'"
+// jest.setup.js — выполняется до тестов
 jest.mock('axios', () => ({
   get: jest.fn(),
   post: jest.fn(),
