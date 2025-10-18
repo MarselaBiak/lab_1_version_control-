@@ -1,26 +1,22 @@
-const fetchPosts = require('../src/api');
 const axios = require('axios');
-
 jest.mock('axios');
 
-describe('api:fetchPosts', () => {
-  let response = {};
+const { fetchPosts } = require('../../src/api');
 
-  beforeEach(() => {
-    response = {
+describe('api:fetchPosts', () => {
+  test('отримання постів зі стороннього API', async () => {
+    const response = {
       data: [
-        { userId: 1, id: 1, title: "Тестова назва 1", body: "Контент 1" },
-        { userId: 1, id: 2, title: "Тестова назва 2", body: "Контент 2" },
-        { userId: 1, id: 3, title: "Тестова назва 3", body: "Контент 3" }
+        { id: 1, title: 'Тестова назва 1' },
+        { id: 2, title: 'Тестова назва 2' }
       ]
     };
-  });
 
-  test('Отримання постів зі стороннього API', async () => {
-    axios.get.mockReturnValue(response);
+    axios.get.mockResolvedValue(response); // ✅ асинхронний мок
+
     const posts = await fetchPosts();
 
-    expect(axios.get).toHaveBeenCalledTimes(1)
+    expect(axios.get).toHaveBeenCalledTimes(1);
     expect(posts).toBeInstanceOf(Array);
     expect(posts.length).toBeGreaterThan(0);
     expect(posts[1].id).toEqual(2);
