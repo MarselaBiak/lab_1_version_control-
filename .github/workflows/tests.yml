@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -25,3 +26,23 @@ jobs:
         env:
           TESTOMATIO: ${{ secrets.TESTOMATIO }}
         run: npx jest
+=======
+  - name: Checkout repository
+    uses: actions/checkout@v3
+
+  - name: Set up Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: '18'
+
+  - name: Install dependencies
+    run: npm ci
+
+  - name: Run tests with Testomat.io reporter (CI, verbose, single-threaded)
+    env:
+      TESTOMATIO: ${{ secrets.TESTOMATIO }}
+    run: |
+      node -v
+      npm -v
+      npx jest --runInBand --verbose --detectOpenHandles
+>>>>>>> 9af2c911e69ef202c06a3a4785a478d168c5fd4a
